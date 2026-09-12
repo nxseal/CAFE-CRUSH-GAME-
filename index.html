@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Café Rush</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Decorative background -->
+    <div class="decor decor-heart heart-1">♥</div>
+    <div class="decor decor-heart heart-2">♥</div>
+    <div class="decor decor-star star-1">✦</div>
+    <div class="decor decor-star star-2">✦</div>
+    <div class="decor decor-star star-3">✧</div>
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="screen active">
+
+        <div class="start-card">
+
+            <div class="bow">🎀</div>
+
+            <p class="mini-title">WELCOME TO</p>
+
+            <h1>Café Rush</h1>
+
+            <p class="subtitle">
+                Catch the sweetest treats!
+            </p>
+
+            <div class="form">
+
+                <label for="username">Username</label>
+                <input
+                    id="username"
+                    type="text"
+                    maxlength="20"
+                    placeholder="Enter your username"
+                    autocomplete="off"
+                >
+
+                <label for="whatsapp">WhatsApp Number</label>
+                <input
+                    id="whatsapp"
+                    type="tel"
+                    maxlength="20"
+                    placeholder="08xxxxxxxxxx"
+                    autocomplete="off"
+                >
+
+                <p id="formError" class="form-error"></p>
+
+                <button id="playButton" class="main-button">
+                    PLAY ✨
+                </button>
+
+            </div>
+
+            <button id="startLeaderboardButton" class="secondary-button">
+                🏆 LEADERBOARD
+            </button>
+
+            <p class="hint">
+                WASD / Arrow Keys • Touch controls on mobile
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAME SCREEN -->
+    <section id="gameScreen" class="screen game-screen">
+
+        <div id="gameUI">
+
+            <div class="stat-card">
+                <span>🍰 SCORE</span>
+                <strong id="score">0</strong>
+            </div>
+
+            <div class="stat-card timer-card">
+                <span>⏰ TIME</span>
+                <strong id="timer">60</strong>
+            </div>
+
+        </div>
+
+        <div id="gameCanvas"></div>
+
+        <!-- Mobile Controls -->
+        <div id="mobileControls">
+
+            <button class="control up" data-key="ArrowUp">▲</button>
+
+            <button class="control left" data-key="ArrowLeft">◀</button>
+
+            <button class="control down" data-key="ArrowDown">▼</button>
+
+            <button class="control right" data-key="ArrowRight">▶</button>
+
+        </div>
+
+        <div id="gameMessage">
+            <span>Collect the treats!</span>
+        </div>
+
+    </section>
+
+
+    <!-- GAME OVER -->
+    <section id="gameOverScreen" class="screen">
+
+        <div class="result-card">
+
+            <div class="result-icon">🎀</div>
+
+            <p class="mini-title">TIME'S UP!</p>
+
+            <h2>Sweet job!</h2>
+
+            <p class="final-label">YOUR SCORE</p>
+
+            <div id="finalScore" class="final-score">
+                0
+            </div>
+
+            <p id="submitStatus" class="submit-status">
+                Saving your score...
+            </p>
+
+            <div class="result-buttons">
+
+                <button id="playAgainButton" class="main-button">
+                    PLAY AGAIN ✨
+                </button>
+
+                <button id="resultLeaderboardButton" class="secondary-button">
+                    🏆 LEADERBOARD
+                </button>
+
+                <button id="menuButton" class="text-button">
+                    ← Back to Menu
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEADERBOARD MODAL -->
+    <div id="leaderboardModal" class="modal">
+
+        <div class="leaderboard-card">
+
+            <button id="closeLeaderboard" class="close-button">
+                ×
+            </button>
+
+            <div class="leaderboard-header">
+                <span>👑</span>
+                <h2>Leaderboard</h2>
+                <span>✨</span>
+            </div>
+
+            <p class="leaderboard-subtitle">
+                Top 10 sweetest players
+            </p>
+
+            <div id="leaderboardLoading" class="leaderboard-loading">
+                Loading scores...
+            </div>
+
+            <div id="leaderboardError" class="leaderboard-error"></div>
+
+            <div id="leaderboardContent" class="leaderboard-content">
+
+                <div class="leaderboard-row leaderboard-title-row">
+                    <span>Rank</span>
+                    <span>Player</span>
+                    <span>Score</span>
+                </div>
+
+                <div id="leaderboardRows"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
