@@ -7,7 +7,7 @@
    GOOGLE APPS SCRIPT URL
 ========================================================= */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbxcUrUuHCpo9SV9n6ZXLZPaP_JLFIjoWkhhjlSlPedLkiK7TGspJggJ1pJVtDSztjl0Fg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbx2tSGF9sUVy9ffq53QK5yoqg41Q8LG-9AScYXjyi9DGAguujkICFonikw84h4kWOaryw/exec";
 
 
 /* =========================================================
