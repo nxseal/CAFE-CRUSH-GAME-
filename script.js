@@ -53,6 +53,67 @@ const leaderboardRows =
     document.getElementById("leaderboardRows");
 
 
+// ==================== MUSIC ====================
+
+const loginMusic = document.getElementById("loginMusic");
+const gameMusic = document.getElementById("gameMusic");
+const endMusic = document.getElementById("endMusic");
+
+function stopAllMusic() {
+    [loginMusic, gameMusic, endMusic].forEach(music => {
+        if (music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+    });
+}
+
+function playLoginMusic() {
+    stopAllMusic();
+
+    if (loginMusic) {
+        loginMusic.volume = 0.4;
+
+        const promise = loginMusic.play();
+
+        if (promise !== undefined) {
+            promise.catch(() => {
+                // Browser mungkin memblokir autoplay.
+                // Musik akan dicoba lagi saat user berinteraksi.
+            });
+        }
+    }
+}
+
+function playGameMusic() {
+    stopAllMusic();
+
+    if (gameMusic) {
+        gameMusic.volume = 0.4;
+
+        const promise = gameMusic.play();
+
+        if (promise !== undefined) {
+            promise.catch(() => {});
+        }
+    }
+}
+
+function playEndMusic() {
+    stopAllMusic();
+
+    if (endMusic) {
+        endMusic.volume = 0.4;
+
+        const promise = endMusic.play();
+
+        if (promise !== undefined) {
+            promise.catch(() => {});
+        }
+    }
+}
+
+
 /* =========================================================
    GAME VARIABLES
 ========================================================= */
@@ -176,13 +237,11 @@ function validateForm() {
 ========================================================= */
 
 function startGame() {
+    if (!validateForm()) return;
 
-    if (!validateForm()) {
-        return;
-    }
+    playGameMusic();
 
     showScreen(gameScreen);
-
     initializeGame();
 
     score = 0;
@@ -1768,13 +1827,9 @@ function endGame() {
         score;
 
 
-    showScreen(
-        gameOverScreen
-    );
-
-
-    submitScore();
-}
+    showScreen(gameOverScreen);
+playEndMusic();
+submitScore();
 
 
 /* =========================================================
@@ -2319,6 +2374,9 @@ menuButton.addEventListener(
         showScreen(
             startScreen
         );
+       
+       playLoginMusic();
+       
     }
 );
 
@@ -2346,3 +2404,20 @@ whatsappInput.addEventListener(
         }
     }
 );
+   
+
+// ==================== START LOGIN MUSIC ====================
+
+// Coba langsung memainkan musik saat halaman dibuka
+playLoginMusic();
+
+// Kalau autoplay diblokir browser,
+// coba lagi saat user pertama kali menyentuh halaman.
+function unlockLoginMusic() {
+    if (loginMusic && loginMusic.paused) {
+        playLoginMusic();
+    }
+}
+
+window.addEventListener("pointerdown", unlockLoginMusic, { once: true });
+window.addEventListener("keydown", unlockLoginMusic, { once: true });
