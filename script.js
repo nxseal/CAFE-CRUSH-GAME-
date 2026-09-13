@@ -2344,4 +2344,4 @@ if (event.key === "Enter") {
     }   
 }
 
-);                                                                                                                                                                                      ini, bener ga ini codingannya?
+);                                                                                                                                                                                    
